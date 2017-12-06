@@ -98,7 +98,7 @@ type variableProperties struct {
 		}
 
 		// include Slim variables
-		*android.Product_variables
+		Slim android.Product_variables
 	} `android:"arch_variant"`
 }
 
@@ -174,7 +174,7 @@ type productVariables struct {
 	DeviceKernelHeaders []string `json:",omitempty"`
 
 	// include Slim variables
-	*android.ProductVariables
+	Slim android.ProductVariables
 }
 
 func boolPtr(v bool) *bool {
