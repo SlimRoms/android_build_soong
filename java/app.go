@@ -277,6 +277,8 @@ func (a *AndroidApp) dexBuildActions(ctx android.ModuleContext) android.Path {
 	if ctx.ModuleName() == "framework-res" {
 		// framework-res.apk is installed as system/framework/framework-res.apk
 		installDir = "framework"
+	} else if ctx.ModuleName() == "org.slim.framework-res" {
+		installDir = "framework"
 	} else if Bool(a.appProperties.Privileged) {
 		installDir = filepath.Join("priv-app", a.installApkName)
 	} else {
@@ -287,7 +289,7 @@ func (a *AndroidApp) dexBuildActions(ctx android.ModuleContext) android.Path {
 	a.dexpreopter.uncompressedDex = a.shouldUncompressDex(ctx)
 	a.deviceProperties.UncompressDex = a.dexpreopter.uncompressedDex
 
-	if ctx.ModuleName() != "framework-res" {
+	if ctx.ModuleName() != "framework-res" && ctx.ModuleName() != "org.slim.framework-res" {
 		a.Module.compile(ctx, a.aaptSrcJar)
 	}
 
@@ -402,6 +404,9 @@ func (a *AndroidApp) generateAndroidBuildActions(ctx android.ModuleContext) {
 	var installDir android.OutputPath
 	if ctx.ModuleName() == "framework-res" {
 		// framework-res.apk is installed as system/framework/framework-res.apk
+		installDir = android.PathForModuleInstall(ctx, "framework")
+	} else if ctx.ModuleName() == "org.slim.framework-res" {
+		// org.slim.framework-res.apk needs to be in system/framework
 		installDir = android.PathForModuleInstall(ctx, "framework")
 	} else if Bool(a.appProperties.Privileged) {
 		installDir = android.PathForModuleInstall(ctx, "priv-app", a.installApkName)
