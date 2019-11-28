@@ -165,7 +165,7 @@ func Banner(make_vars map[string]string) string {
 	fmt.Fprintln(b, "                         /   /  | |(_)     (_____ \\                            ")
 	fmt.Fprintln(b, "                        /   /   | | _ _____ _____) )___  _____  ___            ")
 	fmt.Fprintln(b, "  _____________________/   /    | || |     |  __  // _ \\|     |/___)           ")
-	fmt.Fprintln(b, " |                        /     | || | | | | |  i\\ \\ |_| | | | |___ |           ")
+	fmt.Fprintln(b, " |                        /     | || | | | | |  \\ \\ |_| | | | |___ |           ")
 	fmt.Fprintln(b, " |_______________________/       \\_)_|_|_|_|_|   |_\\___/|_|_|_(___/            ")
 	fmt.Fprintln(b, "===============================================================================")
 	fmt.Fprintf(b, "%s=%s\n", "HOST_ARCH", make_vars["HOST_ARCH"])
